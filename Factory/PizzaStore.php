@@ -1,22 +1,19 @@
 <?php
 
 
-class PizzaStore
+abstract  class PizzaStore
 {
 public SimplePizzaFactory $factory;
 
-    public function __construct(SimplePizzaFactory $factory)
-    {
-        $this->factory=$factory;
-    }
 
     public function orderPizza(string $type):Pizza
     {
-        $pizza=$this->factory->createPizza($type);
+        $pizza=$this->createPizza($type);
         $pizza->prepare();
         $pizza->bake();
         $pizza->cut();
         $pizza->box();
         return $pizza;
     }
+    abstract public function createPizza( string $type):Pizza;
 }
