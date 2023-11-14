@@ -4,21 +4,14 @@
 abstract class Pizza
 {
     protected string $name;
-    protected string $dough;
-    protected string $sauce;
-    protected array $toppings=[];
-    public function prepare():void
-    {
-        print "Подготовка ".$this->name."\n";
-        print "Перемешивание теста...\n";
-        print "Добавляем соус...\n";
-        print "Добавляем начинки:";
-        foreach ($this->toppings as $topping)
-        {
-            print " ".$topping;
-        }
-        print "/n";
-    }
+    protected Dough $dough;
+    protected Sauce $sauce;
+    protected array $veggies=[];
+    protected Cheese $cheese;
+    protected Pepperoni $pepperoni;
+    protected Clams $clam;
+    abstract public function prepare():void;
+
 
     public function bake():void
     {
@@ -33,6 +26,14 @@ abstract class Pizza
     public function box():void
     {
         print "Поместите пиццу в официальную коробку PizzaStore.";
+    }
+
+    /**
+     * @param string $name
+     */
+    public function setName(string $name): void
+    {
+        $this->name = $name;
     }
 
     public function getName()

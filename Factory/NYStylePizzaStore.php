@@ -5,21 +5,25 @@ class NYStylePizzaStore extends PizzaStore
 {
     public function createPizza(string $type): Pizza
     {
+        $pizza=null;
+        $ingredientFactory=new NYPizzaIngredientFactory();
         if ($type=="cheese")
         {
-            return new NYStyleCheesePizza();
+            $pizza=new CheesePizza($ingredientFactory);
+            $pizza->setName("New York Style Cheese Pizza");
         } elseif ($type==="veggie")
         {
-            return new NYStyleVeggiePizza();
+            $pizza=new VeggiePizza($ingredientFactory);
+            $pizza->setName("New York Style Veggie Pizza");
         } elseif ($type==="clam")
         {
-            return new NYStyleClamPizza();
+            $pizza=new ClamPizza($ingredientFactory);
+            $pizza->setName("New York Style Clam Pizza");
         } elseif ($type==="pepperoni")
         {
-            return new NYStylePepperoniPizza();
-        } else {
-            /** @noinspection PhpSingleStatementWithBracesInspection */
-            return null;
+            $pizza=new PepperoniPizza($ingredientFactory);
+            $pizza->setName("New York Style Pepperoni Pizza");
         }
+        return $pizza;
     }
 }
