@@ -3,6 +3,7 @@
 
 class HasQuarterState implements State
 {
+    protected int $randomWinner;
     protected GumballMachine $gumballMachine;
 
     public function __construct(GumballMachine $gumballMachine)
@@ -25,11 +26,22 @@ class HasQuarterState implements State
     {
         // TODO: Implement turnCrank() method.
         print "Ты обратился...";
-        $this->gumballMachine->setState($this->gumballMachine->getSoldState());
+        $winner=mt_rand(0,9);
+        if ($winner==0 && ($this->gumballMachine->getCount()>1))
+        {
+            $this->gumballMachine->setState($this->gumballMachine->getWinnerState());
+        }
+        else {
+            $this->gumballMachine->setState($this->gumballMachine->getSoldState());
+        }
     }
-    public function dispense()
+    public function dispense():void
     {
         // TODO: Implement dispense() method.
         print "Жевательная резинка не выдана \n";
+    }
+    public function __toString()
+    {
+        return "HasQuarterState";
     }
 }

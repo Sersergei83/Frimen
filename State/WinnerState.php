@@ -1,9 +1,9 @@
 <?php
 
 
-class SoldState implements State
+class WinnerState implements State
 {
-protected GumballMachine $gumballMachine;
+    protected GumballMachine $gumballMachine;
 
     public function __construct(GumballMachine $gumballMachine)
     {
@@ -28,19 +28,28 @@ protected GumballMachine $gumballMachine;
     {
         // TODO: Implement dispense() method.
         $this->gumballMachine->releaseBall();
-        if($this->gumballMachine->getCount()>0)
+        if ($this->gumballMachine->getCount()==0)
         {
-            $this->gumballMachine->setState($this->gumballMachine->getNoQuarterState());
+            $this->gumballMachine->setState($this->gumballMachine->getSoldOutState());
         }
         else
         {
-            print "Ой, кончились жевательные конфеты!";
-            $this->gumballMachine->setState($this->gumballMachine->getSoldOutState());
+            $this->gumballMachine->releaseBall();
+            print "ВЫ ПОБЕДИТЕЛЬ! У тебя есть две жевательные конфеты за четвертак\n";
+            if ($this->gumballMachine->getCount()>0)
+            {
+                $this->gumballMachine->setState($this->gumballMachine->getNoQuarterState());
+            }
+            else
+            {
+                print "Ой, кончились жевательные конфеты!\n";
+                $this->gumballMachine->setState($this->gumballMachine->getSoldOutState());
+            }
         }
     }
     public function __toString()
     {
-        return "SoldState";
+        return "WinnerState";
     }
 
 }

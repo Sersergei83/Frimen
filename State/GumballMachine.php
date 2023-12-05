@@ -7,6 +7,7 @@ private State $soldOutState;
 private State $noQuarterState;
 private State $hasQuarterState;
 private State $soldState;
+private State $winnerState;
 private State $state;
 public int $count=0;
 
@@ -16,6 +17,7 @@ public int $count=0;
         $this->noQuarterState=new NoQuarterState($this);
         $this->hasQuarterState=new HasQuarterState($this);
         $this->soldState=new SoldState($this);
+        $this->winnerState=new WinnerState($this);
         $this->count=$numberGumballs;
         if ($numberGumballs>0)
         {
@@ -102,6 +104,18 @@ public function insertQuarter():void
      * @return NoQuarterState|SoldState|State
      */
     public function getState(): NoQuarterState|SoldState|State
+    {
+        return $this->state;
+    }
+
+    /**
+     * @return State|WinnerState
+     */
+    public function getWinnerState(): WinnerState|State
+    {
+        return $this->winnerState;
+    }
+    public function __toString()
     {
         return $this->state;
     }
