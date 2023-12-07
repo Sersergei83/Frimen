@@ -11,12 +11,21 @@ class Flock implements Quackable
     }
     public function quack(): void
     {
-       // var_dump($this->quackers[0]);
+              foreach ($this->quackers as $quacker)
+        {
+            $quacker->quack();
+        }
+
+    }
+    public function registerObserver(Observer $observer): void
+    {
         foreach ($this->quackers as $quacker)
         {
-            //var_dump($quacker);
-            $quacker->quack();
-
+            $quacker->registerObserver($observer);
         }
+
+    }
+    public function notifyObservers(): void
+    {
     }
 }

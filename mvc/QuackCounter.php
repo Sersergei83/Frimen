@@ -14,13 +14,19 @@ class QuackCounter implements Quackable
     {
         $this->duck->quack();
         self::$numberOfQuacks++;
-        //var_dump($count);
-       //self::$numberOfQuacks=$count;
     }
 
     public static function getQuacks():int
     {
         return self::$numberOfQuacks;
+    }
+    public function registerObserver(Observer $observer): void
+    {
+        $this->duck->registerObserver($observer);
+    }
+    public function notifyObservers(): void
+    {
+        $this->duck->notifyObservers();
     }
 
 }

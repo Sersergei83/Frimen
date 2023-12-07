@@ -3,8 +3,8 @@
 
 class Observable implements QuackObservable
 {
-    private array $observers;
-    private QuackObservable $duck;
+    public array $observers;
+    public QuackObservable $duck;
 
     public function __construct(QuackObservable $duck)
     {

@@ -37,9 +37,9 @@ $flockOfMallards->add($mallardFour);
 
 $flock->add($flockOfMallards);
 
-print "\n Duck Simulator: Whole Flock Simulation\n";
+print "\n Duck Simulator: With Observer\n";
+$quacologist=new Quackologist();
+$flock->registerObserver($quacologist);
 simulate($flock);
-print "\n Simulator: Mallard Flock Simulation\n";
-simulate($flockOfMallards);
 
 print "The ducks quacked ".QuackCounter::getQuacks() . " times";

@@ -4,7 +4,7 @@
 
 class MallardDuck implements Quackable
 {
-    private Observable $observable;
+    public Observable $observable;
 
     public function __construct()
     {
@@ -22,6 +22,10 @@ class MallardDuck implements Quackable
     }
     public function notifyObservers(): void
     {
-        $this->observable->registerObserver();
+        $this->observable->notifyObservers();
+    }
+    public function __toString()
+    {
+        return "Mallard Duck";
     }
 }
